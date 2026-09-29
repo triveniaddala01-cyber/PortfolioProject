@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+const API_URL = "https://portfolioproject-qc8y.onrender.com";
 
 function Admin() {
   const [loggedIn, setLoggedIn] = useState(
@@ -25,16 +26,16 @@ function Admin() {
   const [projectLive, setProjectLive] = useState("");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/skills")
+    fetch(`${API_URL}/skills`)
       .then((response) => response.json())
       .then((data) => setSkills(data))
       .catch((error) => console.error(error));
 
-    fetch("http://127.0.0.1:8000/projects")
+    fetch(`${API_URL}/projects`)
       .then((response) => response.json())
       .then((data) => setProjects(data))
       .catch((error) => console.error(error));
-    fetch("http://127.0.0.1:8000/about")
+    fetch(`${API_URL}/about`)
   .then((response) => response.json())
   .then((data) => {
     setAbout(data);
@@ -44,7 +45,7 @@ function Admin() {
     setAboutCareerGoal(data.career_goal || "");
   })
   .catch((error) => console.error(error));
-    fetch("http://127.0.0.1:8000/contact")
+    fetch(`${API_URL}/contact`)
   .then((response) => response.json())
   .then((data) => setMessages(data))
   .catch((error) => console.error(error));
@@ -56,7 +57,7 @@ function Admin() {
     const formData = new FormData(e.target);
 
     const response = await fetch(
-      "http://127.0.0.1:8000/auth/login",
+      `${API_URL}/auth/login`,
       {
         method: "POST",
         headers: {
@@ -83,7 +84,7 @@ function Admin() {
     e.preventDefault();
 
     const response = await fetch(
-      "http://127.0.0.1:8000/skills",
+      `${API_URL}/skills`,
       {
         method: "POST",
         headers: {
@@ -107,7 +108,7 @@ function Admin() {
 
   async function deleteSkill(id) {
     const response = await fetch(
-      `http://127.0.0.1:8000/skills/${id}`,
+      `${API_URL}/skills/${id}`,
       {
         method: "DELETE",
       }
@@ -124,7 +125,7 @@ function Admin() {
     e.preventDefault();
 
     const response = await fetch(
-      "http://127.0.0.1:8000/projects",
+      `${API_URL}/projects`,
       {
         method: "POST",
         headers: {
@@ -156,7 +157,7 @@ function Admin() {
   e.preventDefault();
 
   const response = await fetch(
-    `http://127.0.0.1:8000/projects/${editingProject.id}`,
+    `${API_URL}/projects/${editingProject.id}`,
     {
       method: "PUT",
       headers: {
@@ -195,7 +196,7 @@ async function updateAbout(e) {
   e.preventDefault();
 
   const response = await fetch(
-    "http://127.0.0.1:8000/about",
+    `${API_URL}/about`,
     {
       method: "PUT",
       headers: {
@@ -550,7 +551,7 @@ async function updateAbout(e) {
     <button
       onClick={async () => {
         const response = await fetch(
-          `http://127.0.0.1:8000/projects/${project.id}`,
+          `${API_URL}/projects/${project.id}`,
           {
             method: "DELETE",
           }
@@ -613,7 +614,7 @@ async function updateAbout(e) {
       onClick={async () => {
 
         const response = await fetch(
-          `http://127.0.0.1:8000/contact/${message.id}`,
+          `${API_URL}/contact/${message.id}`,
           {
             method: "DELETE",
           }

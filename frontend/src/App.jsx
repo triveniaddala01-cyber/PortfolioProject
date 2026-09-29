@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Admin from "./Admin";
+const API_URL = "https://portfolioproject-qc8y.onrender.com";
 
 function App() {
   if (window.location.pathname === "/admin") {
@@ -11,21 +12,21 @@ function App() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/skills")
-      .then((response) => response.json())
-      .then((data) => setSkills(data))
-      .catch((error) => console.error("Error loading skills:", error));
+  fetch(`${API_URL}/skills`)
+    .then((response) => response.json())
+    .then((data) => setSkills(data))
+    .catch((error) => console.error("Error loading skills:", error));
 
-    fetch("http://127.0.0.1:8000/about")
-      .then((response) => response.json())
-      .then((data) => setAbout(data))
-      .catch((error) => console.error("Error loading about:", error));
+  fetch(`${API_URL}/about`)
+    .then((response) => response.json())
+    .then((data) => setAbout(data))
+    .catch((error) => console.error("Error loading about:", error));
 
-    fetch("http://127.0.0.1:8000/projects")
-      .then((response) => response.json())
-      .then((data) => setProjects(data))
-      .catch((error) => console.error("Error loading projects:", error));
-  }, []);
+  fetch(`${API_URL}/projects`)
+    .then((response) => response.json())
+    .then((data) => setProjects(data))
+    .catch((error) => console.error("Error loading projects:", error));
+}, []);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
@@ -303,7 +304,7 @@ function App() {
             const formData = new FormData(e.target);
 
             const response = await fetch(
-              "http://127.0.0.1:8000/contact",
+              `${API_URL}/contact`,
               {
                 method: "POST",
                 headers: {
