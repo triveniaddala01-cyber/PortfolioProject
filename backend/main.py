@@ -25,6 +25,7 @@ app.add_middleware(
         "http://localhost:5173",
         "https://portfolio-project-ld5x.vercel.app"
     ],
+    allow_origin_regex=r"https://portfolio-project-ld5x-[a-z0-9]+-triveni10\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
