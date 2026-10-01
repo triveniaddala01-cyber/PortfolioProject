@@ -33,6 +33,7 @@ function App() {
 
       {/* Navigation */}
       <nav className="flex justify-between items-center px-8 py-5 bg-gray-900">
+          {/* Production deployment update */}
         <h1 className="text-2xl font-bold text-blue-500">
           Triveni
         </h1>
