@@ -18,12 +18,13 @@ from schemas import (
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Portfolio CMS API")
+
 app.add_middleware(
     CORSMiddleware,
-allow_origins=[
-    "http://localhost:5173",
-    "https://portfolio-project-ld5x-61mcgr2cj-triveni10.vercel.app"
-],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://portfolio-project-ld5x.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
