@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Admin from "./Admin";
 const API_URL = "https://portfolioproject-qc8y.onrender.com";
+console.log("API URL:", API_URL);
 
 function App() {
   if (window.location.pathname === "/admin") {
