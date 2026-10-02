@@ -7,30 +7,30 @@ const API_URL =
 console.log("API URL:", API_URL);
 
 function App() {
-  if (window.location.pathname === "/admin") {
-    return <Admin />;
-  }
-
   const [skills, setSkills] = useState([]);
   const [about, setAbout] = useState(null);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-  fetch(`${API_URL}/skills`)
-    .then((response) => response.json())
-    .then((data) => setSkills(data))
-    .catch((error) => console.error("Error loading skills:", error));
+    fetch(`${API_URL}/skills`)
+      .then((response) => response.json())
+      .then((data) => setSkills(data))
+      .catch((error) => console.error("Error loading skills:", error));
 
-  fetch(`${API_URL}/about`)
-    .then((response) => response.json())
-    .then((data) => setAbout(data))
-    .catch((error) => console.error("Error loading about:", error));
+    fetch(`${API_URL}/about`)
+      .then((response) => response.json())
+      .then((data) => setAbout(data))
+      .catch((error) => console.error("Error loading about:", error));
 
-  fetch(`${API_URL}/projects`)
-    .then((response) => response.json())
-    .then((data) => setProjects(data))
-    .catch((error) => console.error("Error loading projects:", error));
-}, []);
+    fetch(`${API_URL}/projects`)
+      .then((response) => response.json())
+      .then((data) => setProjects(data))
+      .catch((error) => console.error("Error loading projects:", error));
+  }, []);
+
+  if (window.location.pathname === "/admin") {
+    return <Admin />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
