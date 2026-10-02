@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Admin from "./Admin";
-const API_URL = "https://portfolioproject-qc8y.onrender.com";
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8000"
+    : "https://portfolioproject-qc8y.onrender.com";
 console.log("API URL:", API_URL);
 
 function App() {
