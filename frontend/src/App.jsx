@@ -28,10 +28,12 @@ function App() {
       .catch((error) => console.error("Error loading projects:", error));
   }, []);
 
-  if (window.location.pathname === "/admin") {
-    return <Admin />;
-  }
-
+  if (
+  window.location.pathname === "/admin" ||
+  new URLSearchParams(window.location.search).get("admin") === "true"
+) {
+  return <Admin />;
+}
   return (
     <div className="min-h-screen bg-gray-950 text-white">
 
