@@ -7,15 +7,13 @@ const API_URL =
 console.log("API URL:", API_URL);
 
 function App() {
-    if (
-    window.location.pathname === "/admin" ||
-    new URLSearchParams(window.location.search).get("admin") === "true"
-  ) {
-    return <Admin />;
-  }
   const [skills, setSkills] = useState([]);
   const [about, setAbout] = useState(null);
   const [projects, setProjects] = useState([]);
+
+  const isAdmin =
+    window.location.pathname === "/admin" ||
+    new URLSearchParams(window.location.search).get("admin") === "true";
 
   useEffect(() => {
     fetch(`${API_URL}/skills`)
@@ -34,12 +32,10 @@ function App() {
       .catch((error) => console.error("Error loading projects:", error));
   }, []);
 
-  if (
-  window.location.pathname === "/admin" ||
-  new URLSearchParams(window.location.search).get("admin") === "true"
-) {
-  return <Admin />;
-}
+  if (isAdmin) {
+    return <Admin />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
 
