@@ -23,7 +23,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://portfolio-project-ld5x.vercel.app"
+"https://triveni-portfolio-frontend.vercel.app",
     ],
     allow_origin_regex=r"https://portfolio-project-ld5x-[a-z0-9]+-triveni10\.vercel\.app",
     allow_credentials=True,
