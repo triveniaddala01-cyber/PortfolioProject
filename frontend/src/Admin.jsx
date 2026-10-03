@@ -52,33 +52,38 @@ function Admin() {
   }, []);
 
   async function handleLogin(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(e.target);
+  const formData = new FormData(e.target);
 
-    const response = await fetch(
-      `${API_URL}/auth/login`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.get("email"),
-          password: formData.get("password"),
-        }),
-      }
-    );
+  try {
+    const response = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.get("email"),
+        password: formData.get("password"),
+      }),
+    });
 
     const data = await response.json();
 
-    if (data.message === "Login successful") {
-  setLoggedIn(true);
-  localStorage.setItem("adminLoggedIn", "true");
-} else {
-      alert("Invalid email or password");
+    console.log("Login status:", response.status);
+    console.log("Login response:", data);
+
+    if (response.ok && data.message === "Login successful") {
+      localStorage.setItem("adminLoggedIn", "true");
+      setLoggedIn(true);
+    } else {
+      alert(`Login failed: ${data.message || "Unknown error"}`);
     }
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Cannot connect to the backend");
   }
+}
 
   async function addSkill(e) {
     e.preventDefault();
