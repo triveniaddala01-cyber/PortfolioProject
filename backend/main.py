@@ -251,6 +251,24 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
         "message": "Login successful",
         "email": user.email
     }
+@app.put("/auth/reset-password")
+def reset_password(
+    user_data: LoginRequest,
+    db: Session = Depends(get_db)
+):
+    user = db.query(User).filter(
+        User.email == user_data.email
+    ).first()
+
+    if not user:
+        return {"message": "User not found"}
+
+    user.password = user_data.password
+    db.commit()
+
+    return {
+        "message": "Password updated successfully"
+    }
 @app.post("/auth/register")
 def register_user(
     user_data: LoginRequest,
