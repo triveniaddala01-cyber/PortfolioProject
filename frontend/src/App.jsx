@@ -7,6 +7,12 @@ const API_URL =
 console.log("API URL:", API_URL);
 
 function App() {
+    if (
+    window.location.pathname === "/admin" ||
+    new URLSearchParams(window.location.search).get("admin") === "true"
+  ) {
+    return <Admin />;
+  }
   const [skills, setSkills] = useState([]);
   const [about, setAbout] = useState(null);
   const [projects, setProjects] = useState([]);
